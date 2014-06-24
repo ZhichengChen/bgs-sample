@@ -1,4 +1,4 @@
-package com.red_folder.phonegap.plugin.backgroundservice.sample;
+package com.red_folder.phonegap.plugin.backgroundservice;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,6 +6,7 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.red_folder.phonegap.plugin.backgroundservice.BackgroundService;
@@ -15,6 +16,13 @@ public class MyService extends BackgroundService {
 	private final static String TAG = MyService.class.getSimpleName();
 	
 	private String mHelloTo = "World";
+	SharedPreferences preferences;
+	SharedPreferences.Editor editor;
+	
+	public MyService(){
+		preferences = getSharedPreferences("HelloWorld",MODE_WORLD_READABLE);
+		editor = preferences.edit();
+	}
 
 	@Override
 	protected JSONObject doWork() {
@@ -38,8 +46,10 @@ public class MyService extends BackgroundService {
 	protected JSONObject getConfig() {
 		JSONObject result = new JSONObject();
 		
+		String passphase = preferences.getString("HelloTo", null);
+		
 		try {
-			result.put("HelloTo", this.mHelloTo);
+			result.put("HelloTo", passphase);
 		} catch (JSONException e) {
 		}
 		
@@ -48,9 +58,12 @@ public class MyService extends BackgroundService {
 
 	@Override
 	protected void setConfig(JSONObject config) {
+		
 		try {
-			if (config.has("HelloTo"))
-				this.mHelloTo = config.getString("HelloTo");
+			if (config.has("HelloTo")){
+				editor.putString("HelloTo", config.getString("HelloTo"));
+				editor.commit();
+			}
 		} catch (JSONException e) {
 		}
 		
@@ -65,13 +78,14 @@ public class MyService extends BackgroundService {
 	@Override
 	protected void onTimerEnabled() {
 		// TODO Auto-generated method stub
+		Log.i("TAG", "TimeEnabled");
 		
 	}
 
 	@Override
 	protected void onTimerDisabled() {
 		// TODO Auto-generated method stub
-		
+		Log.i("TAG", "TimeDisEnabled");
 	}
 
 

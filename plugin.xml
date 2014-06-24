@@ -30,15 +30,15 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
   
-            <service android:name="com.red_folder.phonegap.plugin.backgroundservice.sample.MyService">
+            <service android:name="com.red_folder.phonegap.plugin.backgroundservice.MyService">
                 <intent-filter>         
-                    <action android:name="com.red_folder.phonegap.plugin.backgroundservice.sample.MyService"/> 
+                    <action android:name="com.red_folder.phonegap.plugin.backgroundservice.MyService"/> 
                 </intent-filter>     
             </service>
             
         </config-file>
         
-        <source-file src="src/android/MyService.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice/sample" />
+        <source-file src="src/android/MyService.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
     </platform>
 	
 </plugin>
