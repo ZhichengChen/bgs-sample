@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="com.red_folder.phonegap.plugin.backgroundservice"
+        id="com.red_folder.phonegap.plugin.myservice"
         version="2.0.0">
 
     <name>Background Service Plugin - Sample Background Service</name>
@@ -30,15 +30,15 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
   
-            <service android:name="com.red_folder.phonegap.plugin.backgroundservice.MyService">
+            <service android:name="com.red_folder.phonegap.plugin.myservice.MyService">
                 <intent-filter>         
-                    <action android:name="com.red_folder.phonegap.plugin.backgroundservice.MyService"/> 
+                    <action android:name="com.red_folder.phonegap.plugin.myservice.MyService"/> 
                 </intent-filter>     
             </service>
             
         </config-file>
         
-        <source-file src="src/android/MyService.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/MyService.java" target-dir="src/com/red_folder/phonegap/plugin/myservice" />
     </platform>
 	
 </plugin>
