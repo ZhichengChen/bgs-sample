@@ -1,4 +1,4 @@
-package com.red_folder.phonegap.plugin.backgroundservice;
+package com.red_folder.phonegap.plugin.myservice;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
