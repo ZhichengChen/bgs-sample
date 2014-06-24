@@ -20,7 +20,7 @@ public class MyService extends BackgroundService {
 	SharedPreferences.Editor editor;
 	
 	public MyService(){
-		preferences = getSharedPreferences("HelloWorld",MODE_WORLD_READABLE);
+		preferences = getSharedPreferences("HelloWorld",Context.MODE_PRIVATE);
 		editor = preferences.edit();
 	}
 
