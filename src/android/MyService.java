@@ -6,6 +6,7 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -19,10 +20,6 @@ public class MyService extends BackgroundService {
 	SharedPreferences preferences;
 	SharedPreferences.Editor editor;
 	
-	public MyService(){
-		preferences = getSharedPreferences("HelloWorld",Context.MODE_PRIVATE);
-		editor = preferences.edit();
-	}
 
 	@Override
 	protected JSONObject doWork() {
@@ -45,11 +42,13 @@ public class MyService extends BackgroundService {
 	@Override
 	protected JSONObject getConfig() {
 		JSONObject result = new JSONObject();
+		preferences = getSharedPreferences("HelloWorld",Context.MODE_PRIVATE);
+		editor = preferences.edit();
 		
-		String passphase = preferences.getString("HelloTo", null);
+		String HelloTo = preferences.getString("HelloTo", null);
 		
 		try {
-			result.put("HelloTo", passphase);
+			result.put("HelloTo", HelloTo);
 		} catch (JSONException e) {
 		}
 		
@@ -58,6 +57,8 @@ public class MyService extends BackgroundService {
 
 	@Override
 	protected void setConfig(JSONObject config) {
+		preferences = getSharedPreferences("HelloWorld",Context.MODE_PRIVATE);
+		editor = preferences.edit();
 		
 		try {
 			if (config.has("HelloTo")){
